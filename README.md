@@ -1,6 +1,9 @@
 Cities Skylines Terrain Generator 
+=================================
 
 Quickly generate great looking terrain to be used as a base for creating your own maps!
+
+This mod is available on the [Steam Workshop](http://steamcommunity.com/sharedfiles/filedetails/?id=453425585)
 
 This mod creates random fractal terrains using the diamond square algorithm.
 
@@ -22,11 +25,11 @@ After creating a new terrain you must modify your water level, click 'Reset Wate
 
 Just play around and have fun !
 
-Thanks to other modders for their work on UI code. Kudos to https://github.com/lxteo/Cities-Skylines-Mapper https://github.com/bernardd/Crossings and https://github.com/AlexanderDzhoganov/Skylines-FPSCamera
+Thanks to other modders for their work on UI code. Kudos to [Cities-Skylines-Mapper](https://github.com/lxteo/Cities-Skylines-Mapper) [Crossings](https://github.com/bernardd/Crossings) and [Skylines-FPSCamera](https://github.com/AlexanderDzhoganov/Skylines-FPSCamera)
 
-This mod was basically inspired by http://www.bluh.org/code-the-diamond-square-algorithm/ and an excellent explanation can be found here: http://www.playfuljs.com/realistic-terrain-in-130-lines/ 
+This mod was basically inspired by [Charles Randall](http://www.bluh.org/code-the-diamond-square-algorithm/) and another excellent explanation is from [Hunter Loftis](http://www.playfuljs.com/realistic-terrain-in-130-lines/)
 
-Learn more on the diamond square algorithm: http://en.wikipedia.org/wiki/Diamond-square_algorithm and http://www.gameprogrammer.com/fractal.html
+Learn more on the [diamond square algorithm](http://en.wikipedia.org/wiki/Diamond-square_algorithm) and on [Gameprogrammer.com](http://www.gameprogrammer.com/fractal.html)
 
 If you find bugs or have feedback let me know!
 
