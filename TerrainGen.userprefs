@@ -1,0 +1,25 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../MonoDevelop/TerrainGen/AssemblyInfo.cs">
+    <Files>
+      <File FileName="../MonoDevelop/TerrainGen/TerrainGen.cs" Line="35" Column="42" />
+      <File FileName="../MonoDevelop/TerrainGen/Loader.cs" Line="43" Column="1" />
+      <File FileName="../MonoDevelop/TerrainGen/ModInfo.cs" Line="2" Column="1" />
+      <File FileName="../MonoDevelop/TerrainGen/AssemblyInfo.cs" Line="12" Column="48" />
+      <File FileName="../MonoDevelop/TerrainGen/TerrainUI.cs" Line="38" Column="49" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="TerrainGen" expanded="True">
+            <Node name="AssemblyInfo.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
