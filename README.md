@@ -1,5 +1,5 @@
-Cities Skylines Terrain Generator 
-=================================
+Cities: Skylines Terrain Generator 
+==================================
 
 Quickly generate great looking terrain to be used as a base for creating your own maps!
 
@@ -29,7 +29,7 @@ Thanks to other modders for their work on UI code. Kudos to [Cities-Skylines-Map
 
 This mod was basically inspired by [Charles Randall](http://www.bluh.org/code-the-diamond-square-algorithm/) and another excellent explanation is from [Hunter Loftis](http://www.playfuljs.com/realistic-terrain-in-130-lines/)
 
-Learn more on the [diamond square algorithm](http://en.wikipedia.org/wiki/Diamond-square_algorithm) and on [Gameprogrammer.com](http://www.gameprogrammer.com/fractal.html)
+Learn more about the [diamond square algorithm](http://en.wikipedia.org/wiki/Diamond-square_algorithm) and on [Gameprogrammer.com](http://www.gameprogrammer.com/fractal.html)
 
 If you find bugs or have feedback let me know!
 
