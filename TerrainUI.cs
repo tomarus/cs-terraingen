@@ -13,6 +13,7 @@ namespace TerrainGen {
 		UILabel title;
 		UIButton okButton;
 		UIButton cancelButton;
+		UIDragHandle dragHandle;
 		
 		float smoothness = 8;
 		float scale = 0.75f;
@@ -23,6 +24,7 @@ namespace TerrainGen {
 			title = AddUIComponent<UILabel>();
 			okButton = AddUIComponent<UIButton>();
 			cancelButton = AddUIComponent<UIButton>();
+			dragHandle = AddUIComponent<UIDragHandle>();
 		}
 		
 		private void SetButton(UIButton okButton, string p1,int x, int y){
@@ -54,6 +56,12 @@ namespace TerrainGen {
 			SetButton(cancelButton, "Cancel", 130, 250);
 			cancelButton.eventClick += cancelButton_eventClick;
 			
+			// Thanks, https://github.com/SamsamTS/CS-MeshInfo :)
+			dragHandle.width = this.width;
+			dragHandle.height = 50;
+			dragHandle.target = this;
+			dragHandle.relativePosition = Vector3.zero;
+
 			MakeSlider ("SmoothSlider", "Smoothness", 50, 9.0f, 0.0f, 10.0f, 1.0f,
 			            value => {
 				smoothness = value;
