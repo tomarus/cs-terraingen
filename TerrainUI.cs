@@ -68,7 +68,7 @@ namespace TerrainGen {
 			cb.eventClick += eventClick;
 			cb.Show ();
 			cb.color = new Color32(185, 221, 254, 255);
-			cb.enabled = true;            
+			cb.enabled = true;
 			cb.isChecked = true;
 			cb.tooltip = tooltip;
 			return cb;

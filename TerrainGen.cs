@@ -18,7 +18,7 @@ namespace TerrainGen {
 			return i;
 		}}
 	}
-	
+
 	public class TerrainGen : ThreadingExtensionBase {
 		private System.Random r;
 		private SquareDiamond sdTerrain;
@@ -69,7 +69,7 @@ namespace TerrainGen {
 		}
 
 		public void DoResources(int smoothness, float scale, float offset, int blur, float forestlvl) {
-			if ( sdResources == null) 
+			if ( sdResources == null)
 				sdResources = new SquareDiamond(512);
 			sdResources.Generate(smoothness, (double)scale);
 
@@ -81,7 +81,7 @@ namespace TerrainGen {
 			forestlvl *= 0.7f;
 			float gap = (1.0f - forestlvl ) / 3;
 			forestlvl /= 2;
-			
+
 			for (int y=0; y<512; y++) {
 				for (int x=0; x<512; x++) {
 					int pos = x * 512 + y;
@@ -127,7 +127,7 @@ namespace TerrainGen {
 			// TODO: Do something with TerrainManager.instance.GetShorePos() and HasWater()
 
 			int start = 0;
-			int end = 0;
+			int end = 512;
 			if (inside25 == true) {
 				// Create trees only inside center 25 tiles.
 				start = (512/9)*2;

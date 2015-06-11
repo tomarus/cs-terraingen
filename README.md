@@ -9,7 +9,7 @@ This mod creates random fractal terrains using the diamond square algorithm.
 
 This mod will work with new maps only! If you already have placed watersources, roads, ship paths, etc those might get lost when creating a new terrain, or will go all goofy depending on your map. I.e. watersources can get underground where you won't be able to move/delete them. 
 
-This mod adds a new 'tree' button in the bottom button bar in the Map Editor. (I couldn't find any other usable icon atm).
+This mod adds a new 'pyramid' button in the bottom button bar in the Map Editor.
 
 ## Generating Terrain
 
