@@ -1,19 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../MonoDevelop/TerrainGen/AssemblyInfo.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../MonoDevelop/TerrainGen/TerrainUI.cs">
     <Files>
-      <File FileName="../MonoDevelop/TerrainGen/TerrainGen.cs" Line="35" Column="42" />
-      <File FileName="../MonoDevelop/TerrainGen/Loader.cs" Line="43" Column="1" />
-      <File FileName="../MonoDevelop/TerrainGen/ModInfo.cs" Line="2" Column="1" />
-      <File FileName="../MonoDevelop/TerrainGen/AssemblyInfo.cs" Line="12" Column="48" />
-      <File FileName="../MonoDevelop/TerrainGen/TerrainUI.cs" Line="38" Column="49" />
+      <File FileName="../MonoDevelop/TerrainGen/TerrainGen.cs" Line="170" Column="2" />
+      <File FileName="../MonoDevelop/TerrainGen/TerrainUIPanels.cs" Line="1" Column="1" />
+      <File FileName="../MonoDevelop/TerrainGen/TerrainUI.cs" Line="54" Column="39" />
+      <File FileName="../MonoDevelop/TerrainGen/Loader.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="TerrainGen" expanded="True">
-            <Node name="AssemblyInfo.cs" selected="True" />
-          </Node>
+          <Node name="TerrainGen" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
