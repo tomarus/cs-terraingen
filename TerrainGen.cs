@@ -32,9 +32,9 @@ namespace TerrainGen {
 
 		public void FlattenTerrain() {
 			byte[] map = new byte[1081*1081*2];
-			for (int i=0; i<1081*1081; i+=2) {
-				map[i] = 15;
-				map[i+1] = 0;
+			for (int i=0; i<1081*1081*2; i+=2) {
+				map[i] = 0;
+				map[i+1] = 15;
 			}
 			SimulationManager.instance.AddAction(LoadHeightMap(map));
 		}
