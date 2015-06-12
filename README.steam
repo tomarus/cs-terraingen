@@ -1,3 +1,5 @@
+[h1]Terrain Generator[/h1]
+
 Quickly generate great looking terrain to be used as a base for creating your own maps!
 
 This mod creates random fractal terrains using the diamond square algorithm.
@@ -42,6 +44,8 @@ Also note that tree generation can plant trees underwater currently. And you mig
 
 Just play around and have fun !
 
+[h1]Info[/h1]
+
 Thanks to other modders for their work on UI code. Kudos to [url=https://github.com/lxteo/Cities-Skylines-Mapper]Cities-Skylines-Mapper[/url] [url=https://github.com/bernardd/Crossings]Crossings[/url] and [url=https://github.com/AlexanderDzhoganov/Skylines-FPSCamera]Skylines-FPSCamera[/url].
 
 This mod was basically inspired by [url=http://www.bluh.org/code-the-diamond-square-algorithm/]Charles Randall[/url] and another excellent explanation is from [url=http://www.playfuljs.com/realistic-terrain-in-130-lines/]Hunter Loftis[/url]
@@ -56,7 +60,7 @@ This mod is also available on [url=https://github.com/tomarus/cs-terraingen]gith
 
 June 12th 2015:
     * Added natural resources and tree generation.
-    * New icon and loads of UI improvements.
+    * New icon, draggable window and loads of other UI improvements.
 
 June 1st 2015:
     * First public release.
