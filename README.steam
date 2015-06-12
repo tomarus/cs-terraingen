@@ -28,6 +28,8 @@ Forest Level specifies the thickness of the forest. Put this value near 0 you cr
 
 Smoothness and scale work the same as for terrain generation. A scale towards 0 and smoothness towards 1 can generate real large smooth areas with interesting patterns.
 
+Note that 'Delete trees before generating' can be a bit buggy currently. The new resources are generated before all trees are gone. To circumvent this, and for best results, this please delete all trees (from the tree tab) manually before generating new resources.
+
 [h1]Generating Trees[/h1]
 
 If follow resources is on, the forest resources previously created are used to specify where trees will be placed.
@@ -49,3 +51,12 @@ Learn more about the diamond square algorithm on [url=http://en.wikipedia.org/wi
 If you find bugs or have feedback let me know!
 
 This mod is also available on [url=https://github.com/tomarus/cs-terraingen]github[/url].
+
+[h1]Changelog[/h1]
+
+June 12th 2015:
+    * Added natural resources and tree generation.
+    * New icon and loads of UI improvements.
+
+June 1st 2015:
+    * First public release.
