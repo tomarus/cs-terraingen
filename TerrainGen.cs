@@ -162,7 +162,7 @@ namespace TerrainGen {
 							if (treeNum == 0) {
 								tree = tc.m_prefabs[r.Next()&numTrees-1];
 							} else {
-								tree = tc.m_prefabs[treeNum];
+								tree = tc.m_prefabs[treeNum-1];
 							}
 							SimulationManager.instance.AddAction( AddTree(newy, newx, SimulationManager.instance.m_randomizer, tree) );
 						}
