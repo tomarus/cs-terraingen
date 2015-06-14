@@ -69,6 +69,10 @@ This mod is also available on [url=https://github.com/tomarus/cs-terraingen]gith
 
 [h1]Changelog[/h1]
 
+June 14th 2015:
+    * Add configurable ore level.
+    * Add random number initialization config.
+
 June 12th 2015:
     * Added natural resources and tree generation.
     * New icon, draggable window and loads of other UI improvements.
