@@ -8,6 +8,15 @@ This mod will work with new maps only! If you already have placed watersources, 
 
 This mod adds a new 'pyramid' button in the bottom button bar in the Map Editor.
 
+[h1]Init Tab[/h1[
+On the init tab you can configure the random number generator. Note that the generated landscapes are seamless so Nort-West carries the same values as South-East. The North and West settings define the Center-North and Center-West.
+
+To create a mountain in the center, put all settings to "Sea" and put only the Center setting to "Mntn". To create a lake surrounded by mountains, put all settings to "Mntn" and only the Center setting to "Sea".
+
+All values are pretty much randomized heavily anyway so don't expect pretty volcano's out of the box.
+
+If you check "Use for resources too" you can control the natural resource generation with these initialization settings. But instead of height, mountain stands for oil and sea stands for fertility. If you put everything at "Sea" and Center at "Mntn" you create oil in the center of the map.
+
 [h1]Generating Terrain[/h1]
 
 There are a few parameters to play with.
@@ -27,6 +36,8 @@ After creating a new terrain you must modify your water level, click 'Reset Wate
 Resources are created using the same algorithm as the terrain itself. The order is fertility, forest, ore, forest and oil. So forests are placed twice, between fertility/ore and between oil/ore.
 
 Forest Level specifies the thickness of the forest. Put this value near 0 you create thin lines around your other resource areas. Put this value closer to 1 and you create big and large forests.
+
+Ore level works the same as forest level. Setting both forest and ore levels to 1 will still generate a tiny bit of oil and fertile land.
 
 Smoothness and scale work the same as for terrain generation. A scale towards 0 and smoothness towards 1 can generate real large smooth areas with interesting patterns.
 

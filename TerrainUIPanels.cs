@@ -83,7 +83,7 @@ namespace TerrainGen {
 			y += sh;
 			forestSlider = TerrainUI.MakeSlider (this, "ForestSlider", "Forest Level", y, forest, 0.0f, 1.0f, 0.05f, value => { forest = value; }, "Small values create thin lines around areas. Larger values generate big forest areas.");
 			y += sh;
-			oreSlider = TerrainUI.MakeSlider (this, "Orelider", "Ore Level", y, ore, 0.0f, 1.0f, 0.05f, value => { ore = value; });
+			oreSlider = TerrainUI.MakeSlider (this, "OreSlider", "Ore Level", y, ore, 0.0f, 1.0f, 0.05f, value => { ore = value; });
 
 			y = 180;
 			deltreesCheckbox = TerrainUI.MakeCheckBox (this, "Delete trees before generating.", y, deltree_eventClick);

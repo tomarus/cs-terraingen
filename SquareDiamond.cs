@@ -46,16 +46,25 @@ namespace TerrainGen {
 			}
 			values = new double[width*height];
 
-			// Initialize with some random points.
-			double n;
-			n = iNorthWest == InitMode.INIT_RANDOM ? frand() : (float)iNorthWest - 2.0;
-			setPoint (0, 0, n);
-			n = iNorth == InitMode.INIT_RANDOM ? frand() : (float)iNorth - 2.0;
-			setPoint (width/2, 0, n);
-			n = iWest == InitMode.INIT_RANDOM ? frand() : (float)iWest - 2.0;
-			setPoint (0, height/2, n);
-			n = iCenter == InitMode.INIT_RANDOM ? frand() : (float)iCenter - 2.0;
-			setPoint (width/2, height/2, n);
+			if (iNorthWest == InitMode.INIT_RANDOM && iNorth == InitMode.INIT_RANDOM && iWest == InitMode.INIT_RANDOM && iCenter == InitMode.INIT_RANDOM ) {
+				// Thoroughly initialize random grid.
+				for( int y = 0; y < height; y += 8) {
+					for (int x = 0; x < width; x += 8) {
+						setPoint(x, y, frand());
+					}
+				}
+			} else {
+				// Initialize with user config.
+				double n;
+				n = iNorthWest == InitMode.INIT_RANDOM ? frand() : (float)iNorthWest - 2.0;
+				setPoint (0, 0, n);
+				n = iNorth == InitMode.INIT_RANDOM ? frand() : (float)iNorth - 2.0;
+				setPoint (width/2, 0, n);
+				n = iWest == InitMode.INIT_RANDOM ? frand() : (float)iWest - 2.0;
+				setPoint (0, height/2, n);
+				n = iCenter == InitMode.INIT_RANDOM ? frand() : (float)iCenter - 2.0;
+				setPoint (width/2, height/2, n);
+			}
 
 			int samples = fs;
 			while(samples > 0) {
