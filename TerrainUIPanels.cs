@@ -260,15 +260,15 @@ namespace TerrainGen {
 			lab3.textScale = 0.6f;
 
 			UILabel lab4 = this.AddUIComponent<UILabel>();
-			lab4.relativePosition = new Vector3(195, y);
-			lab4.text = "Rndm";
+			lab4.relativePosition = new Vector3(185, y);
+			lab4.text = "Random";
 			lab4.textScale = 0.6f;
 
 			y+=sh;
 
-			new UITerrainInitConfig(this, "North West", y, value => { TerraGen.tg.InitNorthWest = value; }); y+=sh;
-			new UITerrainInitConfig(this, "North", y, value => { TerraGen.tg.InitNorth = value; }); y+=sh;
-			new UITerrainInitConfig(this, "West", y, value => { TerraGen.tg.InitWest = value; }); y+=sh;
+			new UITerrainInitConfig(this, "Corners", y, value => { TerraGen.tg.InitNorthWest = value; }); y+=sh;
+			new UITerrainInitConfig(this, "Top", y, value => { TerraGen.tg.InitNorth = value; }); y+=sh;
+			new UITerrainInitConfig(this, "Side", y, value => { TerraGen.tg.InitWest = value; }); y+=sh;
 			new UITerrainInitConfig(this, "Center", y, value => { TerraGen.tg.InitCenter = value; }); y+=sh;
 
 			useforResources = TerrainUI.MakeCheckBox(this, "Use for resources too.", y, useforResources_eventClick, "Use this settings for resources too. Otherwise resources are always randomized.");

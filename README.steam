@@ -9,7 +9,7 @@ This mod will work with new maps only! If you already have placed watersources, 
 This mod adds a new 'pyramid' button in the bottom button bar in the Map Editor.
 
 [h1]Init Tab[/h1[
-On the init tab you can configure the random number generator. Note that the generated landscapes are seamless so Nort-West carries the same values as South-East. The North and West settings define the Center-North and Center-West.
+On the init tab you can configure the random number generator. Note that the generated landscapes are seamless.
 
 To create a mountain in the center, put all settings to "Sea" and put only the Center setting to "Mntn". To create a lake surrounded by mountains, put all settings to "Mntn" and only the Center setting to "Sea".
 
