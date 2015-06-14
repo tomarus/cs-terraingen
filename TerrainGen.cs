@@ -23,6 +23,12 @@ namespace TerrainGen {
 		private System.Random r;
 		private SquareDiamond sdTerrain;
 		private SquareDiamond sdResources;
+
+		public SquareDiamond.InitMode InitNorth = SquareDiamond.InitMode.INIT_RANDOM;
+		public SquareDiamond.InitMode InitWest = SquareDiamond.InitMode.INIT_RANDOM;
+		public SquareDiamond.InitMode InitNorthWest = SquareDiamond.InitMode.INIT_RANDOM;
+		public SquareDiamond.InitMode InitCenter = SquareDiamond.InitMode.INIT_RANDOM;
+		public bool RandomResourcesInit = true;
 		
 		private double frand() {
 			if (r==null)
@@ -43,43 +49,61 @@ namespace TerrainGen {
 			if ( sdTerrain == null )
 				sdTerrain = new SquareDiamond(1024);
 
-			sdTerrain.Generate(smoothness, (double)scale);
+			sdTerrain.Generate(smoothness, (double)scale, InitNorthWest, InitNorth, InitWest, InitCenter);
 			if ( blur >= 3 )
 				sdTerrain.Blur(blur);
 
-			byte[] map = new byte[1081*1081*2];
+			int[] hmap = new int[1081*1081];
 			for (int y=0; y<1081; y++) {
 				for(int x=0; x<1081; x++) {
 					// Offset 28 px 1081-1024/2
 					float pt = (float)sdTerrain.Point(x-28,y-28);
 
-					int pos = (x+y*1081) * 2;
-					int val = (int)((pt+1.0+(double)offset)*32768) ;
+					int pos = x+y*1081;
+					int val = (int)((pt+1.0+(double)offset)*32768);
 					val = Mathf.Clamp (val, 0, 65535);
+					hmap[pos] = val;
+				}
+			}
 
-					byte[] bytes = BitConverter.GetBytes(val);
+			// doRiver();
+
+			byte[] map = new byte[1081*1081*2];
+			for (int y=0; y<1081; y++) {
+				for(int x=0; x<1081; x++) {
+					int pos = x+y*1081;
+					byte[] bytes = BitConverter.GetBytes(hmap[pos]);
 					if (!BitConverter.IsLittleEndian)
 						Array.Reverse(bytes);
-					map[pos] = bytes[0];
-					map[pos+1] = bytes[1];
+					map[pos*2] = bytes[0];
+					map[1+pos*2] = bytes[1];
 				}
 			}
 
 			SimulationManager.instance.AddAction(LoadHeightMap(map));
 		}
 
-		public void DoResources(int smoothness, float scale, float offset, int blur, float forestlvl) {
+
+		public void DoResources(int smoothness, float scale, float offset, int blur, float forestlvl, float orelvl) {
 			if ( sdResources == null)
 				sdResources = new SquareDiamond(512);
-			sdResources.Generate(smoothness, (double)scale);
+
+			if ( RandomResourcesInit == true ) {
+				sdResources.Generate(smoothness, (double)scale,
+					SquareDiamond.InitMode.INIT_RANDOM, SquareDiamond.InitMode.INIT_RANDOM,
+					SquareDiamond.InitMode.INIT_RANDOM, SquareDiamond.InitMode.INIT_RANDOM);
+			} else {
+				sdResources.Generate(smoothness, (double)scale, InitNorthWest, InitNorth, InitWest, InitCenter);
+			}
 
 			NaturalResourceManager m = NaturalResourceManager.instance;
 
 			// forest level from 0.0 to 1.0
 			// in reality max 0.7 (and 3 * 0.1 for other three natural resources makes 1).
-			// XXX: add ore level
+			orelvl *= 3;
 			forestlvl *= 0.7f;
 			float gap = (1.0f - forestlvl ) / 3;
+			float oregap = gap * orelvl;
 			forestlvl /= 2;
 
 			for (int y=0; y<512; y++) {
@@ -95,9 +119,9 @@ namespace TerrainGen {
 
 					if ( pt < gap ) {
 						m.m_naturalResources[pos].m_fertility = 255;
-					} else if ( pt > gap+forestlvl && pt < gap+forestlvl+gap ) {
+					} else if ( pt > gap+forestlvl && pt < gap+forestlvl+oregap ) {
 						m.m_naturalResources[pos].m_ore = 255;
-					} else if ( pt > gap+forestlvl+gap+forestlvl  ) {
+					} else if ( pt > gap+forestlvl+oregap+forestlvl  ) {
 						m.m_naturalResources[pos].m_oil = 255;
 					} else {
 						m.m_naturalResources[pos].m_forest = 255;
@@ -115,7 +139,7 @@ namespace TerrainGen {
 				sd = sdResources;
 			} else {
 				sd = new SquareDiamond(512);
-				sd.Generate(9, 1.0);
+				sd.Generate(9, 1.0, SquareDiamond.InitMode.INIT_RANDOM, SquareDiamond.InitMode.INIT_RANDOM, SquareDiamond.InitMode.INIT_RANDOM, SquareDiamond.InitMode.INIT_RANDOM);
 				sd.Blur(3);
 			}
 
@@ -134,7 +158,6 @@ namespace TerrainGen {
 				end = 512-(512/9)*2;
 			}
 
-			TerrainManager.instance.LateUpdateData(SimulationManager.UpdateMode.NewMap);
 			int matches = 0;
 			for (int y=start; y<end; y++) {
 				for (int x=start; x<end; x++) {
@@ -153,7 +176,7 @@ namespace TerrainGen {
 					int pos = x * 512 + y;
 					double pt = sd.Point(x, y);
 					if ( follow ? m.m_naturalResources[pos].m_forest == 255 : (pt > 0.0 && pt < 0.5) ) {
-							for (int n=0; n<max; n++ ) {
+						for (int n=0; n<max; n++ ) {
 							float xscale = 33.75f; // 540/16=33.75
 							float center = 270*32;
 							int newx = (int)(((float)x*xscale) - center + (frand()*xscale));

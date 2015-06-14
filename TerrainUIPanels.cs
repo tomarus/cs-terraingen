@@ -24,6 +24,7 @@ namespace TerrainGen {
 			Destroy(offsetSlider);
 			Destroy(blurSlider);
 			Destroy(okButton);
+			Destroy(flatButton);
 		}
 
 		public override void Start() {
@@ -34,10 +35,11 @@ namespace TerrainGen {
 			flatButton.eventClick += flattenButton_eventClick;
 
 			int y = 8;
-			smoothSlider = TerrainUI.MakeSlider (this, "SmoothSlider", "Smoothness", y, 9.0f, 0.0f, 10.0f, 1.0f, value => { smoothness = value; }); y+=50;
-			scaleSlider = TerrainUI.MakeSlider (this, "ScaleSlider", "Scale", y, scale, 0.0f, 1.0f, 0.05f, value => { scale = value; }); y+=50;
-			offsetSlider = TerrainUI.MakeSlider (this, "OffsetSlider", "Offset", y, offset, -1.0f, 1.0f, 0.05f, value => { offset = value; }); y+=50;
-			blurSlider = TerrainUI.MakeSlider (this, "BlurSlider", "Blur", y, blur, 0.0f, 2.0f, 1.00f, value => { blur = value; }); y+=50;
+			int sh = 40;
+			smoothSlider = TerrainUI.MakeSlider (this, "SmoothSlider", "Smoothness", y, 9.0f, 0.0f, 10.0f, 1.0f, value => { smoothness = value; }); y+=sh;
+			scaleSlider = TerrainUI.MakeSlider (this, "ScaleSlider", "Scale", y, scale, 0.0f, 1.0f, 0.05f, value => { scale = value; }); y+=sh;
+			offsetSlider = TerrainUI.MakeSlider (this, "OffsetSlider", "Offset", y, offset, -1.0f, 1.0f, 0.05f, value => { offset = value; }); y+=sh;
+			blurSlider = TerrainUI.MakeSlider (this, "BlurSlider", "Blur", y, blur, 0.0f, 2.0f, 1.00f, value => { blur = value; }); y+=sh;
 		}
 
 		private void okButton_eventClick(UIComponent component, UIMouseEventParameter eventParam) {
@@ -55,26 +57,33 @@ namespace TerrainGen {
 		private UISlider smoothSlider;
 		private UISlider scaleSlider;
 		private UISlider forestSlider;
+		private UISlider oreSlider;
 		private UICustomCheckbox deltreesCheckbox;
 
 		private float smoothness = 6f;
 		private float scale = 0.75f;
 		private float forest = 0.5f;
+		private float ore = 0.33f;
 
 		public override void OnDestroy() {
 			Destroy(smoothSlider);
 			Destroy(scaleSlider);
 			Destroy(forestSlider);
+			Destroy(oreSlider);
 			Destroy(okButton);
 		}
 
 		public override void Start() {
 			float y = 8.0f;
+			int sh = 40;
+
 			smoothSlider = TerrainUI.MakeSlider (this, "SmoothSlider", "Smoothness", y, smoothness, 0.0f, 9.0f, 1.0f, value => { smoothness = value; });
-			y += 50;
+			y += sh;
 			scaleSlider = TerrainUI.MakeSlider (this, "ScaleSlider", "Scale", y, scale, 0.0f, 1.0f, 0.05f, value => { scale = value; });
-			y += 50;
+			y += sh;
 			forestSlider = TerrainUI.MakeSlider (this, "ForestSlider", "Forest Level", y, forest, 0.0f, 1.0f, 0.05f, value => { forest = value; }, "Small values create thin lines around areas. Larger values generate big forest areas.");
+			y += sh;
+			oreSlider = TerrainUI.MakeSlider (this, "Orelider", "Ore Level", y, ore, 0.0f, 1.0f, 0.05f, value => { ore = value; });
 
 			y = 180;
 			deltreesCheckbox = TerrainUI.MakeCheckBox (this, "Delete trees before generating.", y, deltree_eventClick);
@@ -86,7 +95,7 @@ namespace TerrainGen {
 		private void okButton_eventClick(UIComponent component, UIMouseEventParameter eventParam) {
 			if ( deltreesCheckbox.isChecked )
 				TerraGen.tg.DeleteAllTrees();
-			TerraGen.tg.DoResources ((int)Mathf.Pow (2.0f, smoothness), scale, 0.0f, 3, forest);
+			TerraGen.tg.DoResources ((int)Mathf.Pow (2.0f, smoothness), scale, 0.0f, 3, forest, ore);
 		}
 
 		private void deltree_eventClick(UIComponent component, UIMouseEventParameter eventParam) {
@@ -173,6 +182,104 @@ namespace TerrainGen {
 		}
 	}
 
+	public delegate void UITerrainSetValue(SquareDiamond.InitMode value);
+
+	public class UITerrainInitConfig  {
+		private UICustomCheckbox hi;
+		private UICustomCheckbox lo;
+		private UICustomCheckbox zero;
+		private UICustomCheckbox random;
+		private UITerrainSetValue setValue;
+
+		public UITerrainInitConfig(UIPanel panel, string txt, float y, UITerrainSetValue valFunc) {
+			UILabel label = panel.AddUIComponent<UILabel>();
+			label.name = txt + "Label";
+			label.text = txt;
+			label.relativePosition = new Vector3(10.0f, y);
+			label.textScale = 0.8f;
+
+			hi = TerrainUI.MakeCheckBox(panel, "", y, hi_eventClick, "Set to max height.", 120);
+			zero = TerrainUI.MakeCheckBox(panel, "", y, zero_eventClick, "Set to medium height.", 145);
+			lo = TerrainUI.MakeCheckBox(panel, "", y, lo_eventClick, "Set to lowest height.", 170);
+			random = TerrainUI.MakeCheckBox(panel, "", y, random_eventClick, "Set to random height.",195);
+			none ();
+			random.isChecked= true;
+			setValue = valFunc;
+			setValue(SquareDiamond.InitMode.INIT_RANDOM);
+		}
+
+		// cheap radiobutton simulation
+		private void none() {
+			hi.isChecked = false;
+			lo.isChecked = false;
+			zero.isChecked = false;
+			random.isChecked = false;
+		}
+		private void hi_eventClick(UIComponent c, UIMouseEventParameter e) {
+			none();
+			hi.isChecked =! hi.isChecked;
+			setValue(SquareDiamond.InitMode.INIT_HI);
+		}
+		private void lo_eventClick(UIComponent c, UIMouseEventParameter e) {
+			none();
+			lo.isChecked =! lo.isChecked;
+			setValue(SquareDiamond.InitMode.INIT_LO);
+		}
+		private void zero_eventClick(UIComponent c, UIMouseEventParameter e) {
+			none();
+			zero.isChecked =! zero.isChecked;
+			setValue(SquareDiamond.InitMode.INIT_ZERO);
+		}
+		private void random_eventClick(UIComponent c, UIMouseEventParameter e) {
+			none();
+			random.isChecked =! random.isChecked;
+			setValue(SquareDiamond.InitMode.INIT_RANDOM);
+		}
+	}
+
+	public class TerrainUIInitPanel : UIPanel {
+		private UICustomCheckbox useforResources;
+
+		public override void Start() {
+			float y = 0.0f;
+			float sh = 28.0f;
+
+			UILabel lab1 = this.AddUIComponent<UILabel>();
+			lab1.relativePosition = new Vector3(105, y);
+			lab1.text = "Mntn";
+			lab1.textScale = 0.6f;
+
+			UILabel lab2 = this.AddUIComponent<UILabel>();
+			lab2.relativePosition = new Vector3(135, y);
+			lab2.text = "Land";
+			lab2.textScale = 0.6f;
+
+			UILabel lab3 = this.AddUIComponent<UILabel>();
+			lab3.relativePosition = new Vector3(165, y);
+			lab3.text = "Sea";
+			lab3.textScale = 0.6f;
+
+			UILabel lab4 = this.AddUIComponent<UILabel>();
+			lab4.relativePosition = new Vector3(195, y);
+			lab4.text = "Rndm";
+			lab4.textScale = 0.6f;
+
+			y+=sh;
+
+			new UITerrainInitConfig(this, "North West", y, value => { TerraGen.tg.InitNorthWest = value; }); y+=sh;
+			new UITerrainInitConfig(this, "North", y, value => { TerraGen.tg.InitNorth = value; }); y+=sh;
+			new UITerrainInitConfig(this, "West", y, value => { TerraGen.tg.InitWest = value; }); y+=sh;
+			new UITerrainInitConfig(this, "Center", y, value => { TerraGen.tg.InitCenter = value; }); y+=sh;
+
+			useforResources = TerrainUI.MakeCheckBox(this, "Use for resources too.", y, useforResources_eventClick, "Use this settings for resources too. Otherwise resources are always randomized.");
+			useforResources.isChecked = false;
+		}
+
+		private void useforResources_eventClick(UIComponent component, UIMouseEventParameter eventParam) {
+			useforResources.isChecked =! useforResources.isChecked;
+			TerraGen.tg.RandomResourcesInit = !useforResources.isChecked;
+		}
+	}
 
 	public class TerrainUIMainPanel : UIPanel {
 		private UILabel title;
@@ -181,6 +288,7 @@ namespace TerrainGen {
 		private TerrainUITerrainPanel terrainPanel;
 		private TerrainUIResourcePanel resPanel;
 		private TerrainUITreePanel treePanel;
+		private TerrainUIInitPanel initPanel;
 		private UITabstrip tabStrip;
 		private UIButton closeButton;
 
@@ -193,6 +301,7 @@ namespace TerrainGen {
 			tabContainer = AddUIComponent<UITabContainer>();
 			closeButton = AddUIComponent<UIButton>();
 
+			initPanel = tabContainer.AddUIComponent<TerrainUIInitPanel>();
 			terrainPanel = tabContainer.AddUIComponent<TerrainUITerrainPanel>();
 			resPanel = tabContainer.AddUIComponent<TerrainUIResourcePanel>();
 			treePanel = tabContainer.AddUIComponent<TerrainUITreePanel>();
@@ -206,6 +315,7 @@ namespace TerrainGen {
 			Destroy(treePanel);
 			Destroy(resPanel);
 			Destroy(terrainPanel);
+			Destroy (initPanel);
 			Destroy(closeButton);
 			Destroy(tabContainer);
 			Destroy(tabStrip);
@@ -246,17 +356,19 @@ namespace TerrainGen {
 			tabStrip.width = this.width - 20;
 			tabStrip.height = 18;
 			tabStrip.relativePosition = new Vector3(10,50);
-			tabStrip.startSelectedIndex = 0;
+			tabStrip.startSelectedIndex = 1;
 			tabStrip.selectedIndex = -1;
 
 			tabs = new List<UIButton>();
-			tabs.Add (TerrainUI.MakeTab (tabStrip, "Terrain", terrainPanel, baseTabButton_eventClick));
-			tabs.Add (TerrainUI.MakeTab (tabStrip, "Resources", resPanel, baseTabButton_eventClick));
-			tabs.Add (TerrainUI.MakeTab (tabStrip, "Trees", treePanel, baseTabButton_eventClick));
+			tabs.Add (TerrainUI.MakeTab (tabStrip, "Init", 34, initPanel, baseTabButton_eventClick));
+			tabs.Add (TerrainUI.MakeTab (tabStrip, "Terrain", 54, terrainPanel, baseTabButton_eventClick));
+			tabs.Add (TerrainUI.MakeTab (tabStrip, "Resources", 74, resPanel, baseTabButton_eventClick));
+			tabs.Add (TerrainUI.MakeTab (tabStrip, "Trees", 54, treePanel, baseTabButton_eventClick));
 
 			//terrainPanel.Hide ();
 			resPanel.Hide ();
 			treePanel.Hide ();
+			initPanel.Hide ();
 		}
 
 		private void checkTabs() {

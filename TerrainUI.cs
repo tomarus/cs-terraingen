@@ -22,11 +22,11 @@ namespace TerrainGen {
 	}
 
 	public static class TerrainUI {
-		public static UIButton MakeTab(UITabstrip tabStrip, string txt, UIPanel p, ColossalFramework.UI.MouseEventHandler eventClick) {
+		public static UIButton MakeTab(UITabstrip tabStrip, string txt, int width, UIPanel p, ColossalFramework.UI.MouseEventHandler eventClick) {
 			UIButton tab = tabStrip.AddTab(txt, null, true);
 			tab.name = txt;
 			tab.text = txt;
-			tab.size = new Vector2(74, 22);
+			tab.size = new Vector2(width, 22);
 			tab.textScale = 0.8f;
 			tab.tabStrip = true;
 			tab.eventClick += eventClick;
@@ -55,7 +55,7 @@ namespace TerrainGen {
 			return b;
 		}
 
-		public static UICustomCheckbox MakeCheckBox(UIPanel panel, string txt, float y, ColossalFramework.UI.MouseEventHandler eventClick, string tooltip = "") {
+		public static UICustomCheckbox MakeCheckBox(UIPanel panel, string txt, float y, ColossalFramework.UI.MouseEventHandler eventClick, string tooltip = "", float x=15.0f) {
 			UILabel label = panel.AddUIComponent<UILabel>();
 			label.name = txt + "Label";
 			label.text = txt;
@@ -63,7 +63,7 @@ namespace TerrainGen {
 			label.textScale = 0.8f;
 
 			UICustomCheckbox cb = panel.AddUIComponent<UICustomCheckbox>();
-			cb.relativePosition = new Vector3(15.0f, y);
+			cb.relativePosition = new Vector3(x, y);
 			cb.size = new Vector2(12, 12);
 			cb.eventClick += eventClick;
 			cb.Show ();

@@ -14,6 +14,8 @@ namespace TerrainGen {
 		private double[] values;
 		private System.Random r;
 
+		public enum InitMode { INIT_LO = 1, INIT_ZERO, INIT_HI, INIT_RANDOM };
+
 		public SquareDiamond(int size) {
 			width = size;
 			height = size;
@@ -38,18 +40,22 @@ namespace TerrainGen {
 			values[(x&(width-1)) + ((y&(height-1)) * width)] = val;
 		}
 
-		public void Generate(int fs, double scale) {
+		public void Generate(int fs, double scale, InitMode iNorthWest, InitMode iNorth, InitMode iWest, InitMode iCenter) {
 			if ( values != null ) {
 				values = null;
 			}
 			values = new double[width*height];
 
 			// Initialize with some random points.
-			for( int y = 0; y < height; y += 8) {
-				for (int x = 0; x < width; x += 8) {
-					setPoint(x, y, frand());
-				}
-			}
+			double n;
+			n = iNorthWest == InitMode.INIT_RANDOM ? frand() : (float)iNorthWest - 2.0;
+			setPoint (0, 0, n);
+			n = iNorth == InitMode.INIT_RANDOM ? frand() : (float)iNorth - 2.0;
+			setPoint (width/2, 0, n);
+			n = iWest == InitMode.INIT_RANDOM ? frand() : (float)iWest - 2.0;
+			setPoint (0, height/2, n);
+			n = iCenter == InitMode.INIT_RANDOM ? frand() : (float)iCenter - 2.0;
+			setPoint (width/2, height/2, n);
 
 			int samples = fs;
 			while(samples > 0) {
