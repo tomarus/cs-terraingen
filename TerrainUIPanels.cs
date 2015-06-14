@@ -333,7 +333,6 @@ namespace TerrainGen {
 			title.textScale = 0.9f;
 			title.size = new Vector2(200, 30);
 
-			// Thanks, https://github.com/SamsamTS/CS-MeshInfo :)
 			dragHandle.width = this.width;
 			dragHandle.height = 50;
 			dragHandle.target = this;

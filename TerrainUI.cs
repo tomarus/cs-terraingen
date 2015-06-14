@@ -4,6 +4,12 @@
 // https://github.com/AlexanderDzhoganov/Skylines-FPSCamera
 // https://github.com/viakmaky/Skylines-ExtendedRoadUpgrade
 // https://github.com/JapaMala/Skylines-ExtendedEditor
+// https://github.com/SamsamTS/CS-MeshInfo
+//
+// Feel free to take what you need from here.
+//
+// This UI is optimized for the Map Editor where not all game sprites are available.
+// Additionally, not all Map Editor sprites might be available In Game or in the Asset Editor.
 //
 using System;
 using System.Collections.Generic;
