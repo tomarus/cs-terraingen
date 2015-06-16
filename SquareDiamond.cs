@@ -74,6 +74,19 @@ namespace TerrainGen {
 			}
 		}
 
+		public void Normalize() {
+			double lo = 0;
+			double hi = 0;
+			for (int i=0; i<width*height; i++) {
+				if ( values[i] < lo ) lo = values[i];
+				if ( values[i] > hi ) hi = values[i];
+			}
+
+			for (int i=0; i<width*height; i++) {
+				values[i] = values[i]-lo/(hi-lo);
+			}
+		}
+
 		private double frand() {
 			return (r.NextDouble () * 2.0) - 1.0;
 		}

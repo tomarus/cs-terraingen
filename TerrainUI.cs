@@ -1,3 +1,4 @@
+#if !(UNITY_4 || UNITY_5)
 //
 // UI Stuff mostly taken from:
 // https://github.com/lxteo/Cities-Skylines-Mapper
@@ -172,3 +173,4 @@ namespace TerrainGen {
 		}
 	}
 } 
+#endif

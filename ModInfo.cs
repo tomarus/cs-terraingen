@@ -1,3 +1,4 @@
+#if !(UNITY_4 || UNITY_5)
 using ICities;
 
 namespace TerrainGen {
@@ -13,3 +14,4 @@ namespace TerrainGen {
 		}
 	}
 }
+#endif

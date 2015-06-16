@@ -1,3 +1,4 @@
+#if !(UNITY_4 || UNITY_5)
 using System;
 using ColossalFramework.UI;
 using ICities;
@@ -53,4 +54,5 @@ namespace TerrainGen {
 			}
 		}
 	}
-} 
+}
+#endif

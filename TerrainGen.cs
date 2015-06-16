@@ -1,3 +1,4 @@
+#if !(UNITY_4 || UNITY_5)
 using System;
 using System.Collections;
 using ColossalFramework;
@@ -230,3 +231,4 @@ namespace TerrainGen {
 		}
 	}
 }
+#endif
