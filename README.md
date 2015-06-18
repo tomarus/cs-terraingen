@@ -14,4 +14,6 @@ Compiling
 
 This mod was created using Monodevelop. To build this mod you need to install all game dll's to your project folder, or point your references path to your steamapps folder.
 
-See [the unofficial modding documentation](http://skylines-modding-docs.readthedocs.org/en/master/modding/Getting-Started/Setting-Up-MonoDevelop.html) for hints on how to setup this project. It will probably also work in Visual Studio but I'm not familar with that.
+Or just use the supplied Makefile to automate compiling and installing. The Makefile is tuned for OSX. If you are running Linux you should change the paths in the Makefile to point to your steamapps folder.
+
+See [the unofficial modding documentation](http://skylines-modding-docs.readthedocs.org/en/master/modding/Getting-Started/Setting-Up-MonoDevelop.html) for hints on how to setup this project.
