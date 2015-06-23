@@ -48,7 +48,7 @@ namespace TerrainGen {
 		
 		public void DoTerrain(int smoothness, float scale, float offset, int blur) {
 			if ( sdTerrain == null )
-				sdTerrain = new SquareDiamond(1024);
+				sdTerrain = new SquareDiamond(1024, new System.Random());
 
 			sdTerrain.Generate(smoothness, (double)scale, InitNorthWest, InitNorth, InitWest, InitCenter);
 			if ( blur >= 3 )
@@ -87,7 +87,7 @@ namespace TerrainGen {
 
 		public void DoResources(int smoothness, float scale, float offset, int blur, float forestlvl, float orelvl) {
 			if ( sdResources == null)
-				sdResources = new SquareDiamond(512);
+				sdResources = new SquareDiamond(512, new System.Random());
 
 			if ( RandomResourcesInit == true ) {
 				sdResources.Generate(smoothness, (double)scale,
@@ -139,7 +139,7 @@ namespace TerrainGen {
 			if (follow) {
 				sd = sdResources;
 			} else {
-				sd = new SquareDiamond(512);
+				sd = new SquareDiamond(512, new System.Random());
 				sd.Generate(9, 1.0, SquareDiamond.InitMode.INIT_RANDOM, SquareDiamond.InitMode.INIT_RANDOM, SquareDiamond.InitMode.INIT_RANDOM, SquareDiamond.InitMode.INIT_RANDOM);
 				sd.Blur(3);
 			}

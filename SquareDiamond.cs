@@ -4,40 +4,20 @@
 // And excellent explanation of the algorithm in js:
 // http://www.playfuljs.com/realistic-terrain-in-130-lines/
 //
-using System;
-using System.Collections;
+using UnityEngine; // for vector2
 
 namespace TerrainGen {
-	public class SquareDiamond {
-		private int width;
-		private int height;
-		private double[] values;
-		private System.Random r;
+	public class SquareDiamond : Algorithm {
+		private System.Random random;
 
 		public enum InitMode { INIT_LO = 1, INIT_ZERO, INIT_HI, INIT_RANDOM };
 
-		public SquareDiamond(int size) {
-			width = size;
-			height = size;
-			r = new System.Random();
+		public SquareDiamond(int n, System.Random r) : base(n) {
+			random = r;
 		}
 
-		~SquareDiamond() {
-			if (values != null) {
-				values = null;
-			}
-		}
-
-		private double getPoint(int x, int y) {
-			return values[ (x&(width-1)) + ( (y&(height-1)) * width ) ];
-		}
-
-		public double Point(int x, int y) {
-			return getPoint (x, y);
-		}
-
-		private void setPoint(int x, int y, double val) {
-			values[(x&(width-1)) + ((y&(height-1)) * width)] = val;
+		public void GenerateRandom(int fs, double scale) {
+			Generate(fs, scale, InitMode.INIT_RANDOM, InitMode.INIT_RANDOM, InitMode.INIT_RANDOM, InitMode.INIT_RANDOM);
 		}
 
 		public void Generate(int fs, double scale, InitMode iNorthWest, InitMode iNorth, InitMode iWest, InitMode iCenter) {
@@ -88,7 +68,7 @@ namespace TerrainGen {
 		}
 
 		private double frand() {
-			return (r.NextDouble () * 2.0) - 1.0;
+			return (random.NextDouble () * 2.0) - 1.0;
 		}
 
 		private void square(int x, int y, int size, double val) {
