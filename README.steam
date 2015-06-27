@@ -75,6 +75,9 @@ This mod is also available on [url=https://github.com/tomarus/cs-terraingen]gith
 
 [h1]Changelog[/h1]
 
+June 27th 2015:
+    * Fix a case where the icon was not showing in the tabbar after selecting a new map with a different biome.
+
 June 14th 2015:
     * Add configurable ore level.
     * Add random number initialization config.
