@@ -35,7 +35,7 @@ public class HeightmapPass {
 				if (Blur>0)
 					sd.Blur(blur);
 				sd.Normalize();
-				//Debug.Log("Generated Square Diamond Heightmap. Smoothness: " + smooth + " Scale: " + Scale + " Blur: " + blur);
+				Debug.Log("Generated Square Diamond Heightmap. Smoothness: " + smooth + " Scale: " + Scale + " Blur: " + blur);
 				break;
 			case 2: // Perlin Noise
 				pn = new TerrainGen.PerlinNoise(512);

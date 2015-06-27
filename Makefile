@@ -9,9 +9,9 @@ MCS="$(BASE)/Frameworks/Mono/lib/mono/2.0/gmcs.exe"
 
 DLL = bin/Debug/$(MOD).dll
 
-.PHONY: clean all
+.PHONY: clean all install refs
 
-REFS = $(filter-out $(DLL).dll,$(shell find . -name '*.dll'))
+REFS = $(filter-out ./$(DLL),$(shell find . -name '*.dll'))
 SRCS = $(shell find . -name '*.cs')
 
 all:	$(DLL)
@@ -21,6 +21,7 @@ all:	$(DLL)
 
 clean:
 	@rm -f $(DLL)
+	@rm -rf bin
 
 install:
 	mkdir -p "$(INST)/$(MOD)"

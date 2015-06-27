@@ -52,6 +52,10 @@ namespace TerrainGen {
 				samples /= 2;
 				scale /= 2.0;
 			}
+
+//			for (int i=0; i<10; i++) {
+//				Debug.Log ("values: " + values[5000+i]);
+//			}
 		}
 
 		public void Normalize() {

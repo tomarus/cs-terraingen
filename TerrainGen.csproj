@@ -98,6 +98,10 @@
     <Compile Include="TerrainUI.cs" />
     <Compile Include="TerrainUIPanels.cs" />
     <Compile Include="SquareDiamond.cs" />
+    <Compile Include="Algorithm.cs" />
+    <Compile Include="Heightmap.cs" />
+    <Compile Include="PerlinNoise.cs" />
+    <Compile Include="Sine.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

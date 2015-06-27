@@ -11,19 +11,18 @@ namespace TerrainGen {
 		private GameObject button1;
 		private GameObject button2;
 		private UIButton menuButton;
-		private bool initialized = false;
+		private UITabstrip strip = null;
 
 		public override void OnLevelLoaded(LoadMode m)
 		{
-			if ( m != LoadMode.NewMap || initialized == true ) {
+			if ( m != LoadMode.NewMap ) {
 				return;
 			}
-			initialized = true;
 
-			window = new GameObject("Terrain Panel");	
+			window = new GameObject("Terrain Panel");
+
 			UIView v = UIView.GetAView();
 
-			UITabstrip strip = null;
 			strip = UIView.Find<UITabstrip>("MainToolstrip");
 
 			button1 = UITemplateManager.GetAsGameObject("MainToolbarButtonTemplate");
@@ -52,6 +51,15 @@ namespace TerrainGen {
 				panel.BringToFront();
 				panel.Show();
 			}
+		}
+
+		public override void OnLevelUnloading() {
+			Debug.Log("OnLevelUnloading()");
+			menuButton.eventClick -= uiButton_eventClick;
+			strip.RemoveUIComponent(menuButton);
+			UIView.Destroy(menuButton);
+			UIView.Destroy(panel);
+			UIView.Destroy(window);
 		}
 	}
 }
