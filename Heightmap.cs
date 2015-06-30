@@ -38,11 +38,11 @@ public class HeightmapPass {
 				Debug.Log("Generated Square Diamond Heightmap. Smoothness: " + smooth + " Scale: " + Scale + " Blur: " + blur);
 				break;
 			case 2: // Perlin Noise
-				pn = new TerrainGen.PerlinNoise(512);
+				pn = new TerrainGen.PerlinNoise(513);
 				pn.Generate(PNFreq, PNScale, (int)PNOct);
 				break;
 			case 3: // Sine
-				si = new TerrainGen.Sine(512);
+				si = new TerrainGen.Sine(513);
 				si.Generate(SIFrequency, SIScale);
 				break;
 		}
@@ -72,7 +72,7 @@ public class Heightmap {
 	public HeightmapPass[] pass;
 	public System.Random random;
 	public int seed;
-	public int size = 512;
+	public int size = 513;
 
 	public Heightmap() {
 		pass = new HeightmapPass[4];
