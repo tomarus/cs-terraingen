@@ -1,11 +1,11 @@
 using UnityEngine;
 
 public class HeightmapPass {
-	public int Type; // 0 = off, 1 = sd, 2 = FIXME to algo class or enum 
-	
+	public int Type; // 0 = off, 1 = sd, 2 = FIXME to algo class or enum
+
 	private float weight;
 	public float Weight { get { return Type == 0 ? 0.0f : weight; } set { weight = value; } }
-	
+
 	// Square Diamond
 	private TerrainGen.SquareDiamond sd;
 	public float Smoothness;
@@ -21,7 +21,7 @@ public class HeightmapPass {
 	public float PNScale;
 	public float PNFreq;
 	public float PNOct;
-	
+
 	public void Generate(System.Random r) {
 		switch(Type) {
 			case 0: // OFF
@@ -30,7 +30,7 @@ public class HeightmapPass {
 				sd = new TerrainGen.SquareDiamond(512, r);
 				int blur = (int)Mathf.Pow(2.0f, Blur) + 1;
 				int smooth = (int)Mathf.Pow(2.0f, Smoothness);
-				sd.GenerateRandom(smooth, (double)Scale); 
+				sd.GenerateRandom(smooth, (double)Scale);
 				//(256, 1.0f, SquareDiamond.InitMode.INIT_RANDOM, SquareDiamond.InitMode.INIT_RANDOM, SquareDiamond.InitMode.INIT_RANDOM, SquareDiamond.InitMode.INIT_RANDOM);
 				if (Blur>0)
 					sd.Blur(blur);
@@ -47,7 +47,7 @@ public class HeightmapPass {
 				break;
 		}
 	}
-	
+
 	public double Point(int x, int y) {
 		double p = 0.0f;
 		switch(Type) {
@@ -73,7 +73,7 @@ public class Heightmap {
 	public System.Random random;
 	public int seed;
 	public int size = 512;
-	
+
 	public Heightmap() {
 		pass = new HeightmapPass[4];
 		for (int i=0; i<4; i++ ) {
@@ -81,14 +81,14 @@ public class Heightmap {
 		}
 		random = new System.Random(seed);
 	}
-	
+
 	public void Seed(bool useRandom, int seed) {
 		if (useRandom)
 			random = new System.Random((int)System.DateTime.Now.Ticks);
 		else
 			random = new System.Random(seed);
 	}
-	
+
 	public void Generate() {
 		for (int i=0; i<4; i++) {
 			if ( pass[i] != null ) {
@@ -96,7 +96,7 @@ public class Heightmap {
 			}
 		}
 	}
-	
+
 	public double Point(int x, int y) {
 		return (
 			(pass[0].Point(x, y) * pass[0].Weight) +
@@ -110,8 +110,8 @@ public class Heightmap {
 	public Texture2D CreateTexture() {
 		texture = new Texture2D(size, size, TextureFormat.RGBA32, false);
 		return texture;
-	}	
-	
+	}
+
 	public void UpdateTexture() {
 		for (int x=0; x<size; x++) {
 			for (int y=0; y<size; y++) {

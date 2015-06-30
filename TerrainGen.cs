@@ -10,9 +10,9 @@ using UnityEngine;
 namespace TerrainGen {
 	public class TerraGen {
 		private static TerrainGen i;
-		
+
 		private TerraGen() {}
-		
+
 		public static TerrainGen tg {	get {
 			if (i==null)
 				i = new TerrainGen();
@@ -30,7 +30,7 @@ namespace TerrainGen {
 		public SquareDiamond.InitMode InitNorthWest = SquareDiamond.InitMode.INIT_RANDOM;
 		public SquareDiamond.InitMode InitCenter = SquareDiamond.InitMode.INIT_RANDOM;
 		public bool RandomResourcesInit = true;
-		
+
 		private double frand() {
 			if (r==null)
 				r = new System.Random();
@@ -45,7 +45,7 @@ namespace TerrainGen {
 			}
 			SimulationManager.instance.AddAction(LoadHeightMap(map));
 		}
-		
+
 		public void DoTerrain(int smoothness, float scale, float offset, int blur) {
 			if ( sdTerrain == null )
 				sdTerrain = new SquareDiamond(1024, new System.Random());
