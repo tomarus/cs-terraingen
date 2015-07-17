@@ -6,6 +6,7 @@ using ColossalFramework.Math;
 using ColossalFramework.UI;
 using ICities;
 using UnityEngine;
+using TerrainLib;
 
 namespace TerrainGen {
 	public class TerraGen {

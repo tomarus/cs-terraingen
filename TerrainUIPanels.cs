@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using ColossalFramework.UI;
 using UnityEngine;
+using TerrainLib;
 
 namespace TerrainGen {
 

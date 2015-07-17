@@ -1,0 +1,4 @@
+[submodule "unity-terrainlib"]
+	path = unity-terrainlib
+	url = https://github.com/tomarus/unity-terrainlib.git
+	branch = master
