@@ -47,7 +47,7 @@ Ore level works the same as forest level. Setting both forest and ore levels to 
 
 Smoothness and scale work the same as for terrain generation. A scale towards 0 and smoothness towards 1 can generate real large smooth areas with interesting patterns.
 
-Note that 'Delete trees before generating' can be a bit buggy currently. The new resources are generated before all trees are gone. To circumvent this, and for best results, this please delete all trees (from the tree tab) manually before generating new resources.
+Note that 'Delete trees before generating' can be a bit buggy currently. The new resources are generated before all trees are gone. To circumvent this, and for best results, please delete all trees (from the tree tab) manually before generating new resources.
 
 [h1]Generating Trees[/h1]
 
@@ -65,7 +65,7 @@ Just play around and have fun !
 
 Thanks to other modders for their work on UI code. Kudos to [url=https://github.com/lxteo/Cities-Skylines-Mapper]Cities-Skylines-Mapper[/url] [url=https://github.com/bernardd/Crossings]Crossings[/url] and [url=https://github.com/AlexanderDzhoganov/Skylines-FPSCamera]Skylines-FPSCamera[/url].
 
-This mod was basically inspired by [url=http://www.bluh.org/code-the-diamond-square-algorithm/]Charles Randall[/url] and another excellent explanation is from [url=http://www.playfuljs.com/realistic-terrain-in-130-lines/]Hunter Loftis[/url]
+This mod was basically inspired by [url=http://www.bluh.org/code-the-diamond-square-algorithm/]Charles Randall[/url] his implementation of the diamond square algorithm and another excellent explanation is from [url=http://www.playfuljs.com/realistic-terrain-in-130-lines/]Hunter Loftis[/url]
 
 Learn more about the diamond square algorithm on [url=http://en.wikipedia.org/wiki/Diamond-square_algorithm]Wikipedia[/url] and on [url=http://www.gameprogrammer.com/fractal.html]Gameprogrammer[/url].
 
@@ -74,6 +74,9 @@ If you find bugs or have feedback let me know!
 This mod is also available on [url=https://github.com/tomarus/cs-terraingen]github[/url].
 
 [h1]Changelog[/h1]
+
+December 13th 2016:
+    * Fix some crashes loading/unloading the mod.
 
 June 27th 2015:
     * Fix a case where the icon was not showing in the tabbar after selecting a new map with a different biome.
