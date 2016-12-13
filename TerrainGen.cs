@@ -129,7 +129,7 @@ namespace TerrainGen {
 						m.m_naturalResources[pos].m_forest = 255;
 						m.m_naturalResources[pos].m_tree = 120; // ??
 					}
-					m.m_naturalResources[pos].m_modified = true;
+					m.m_naturalResources[pos].m_modified = 0xff;
 				}
 			}
 		}

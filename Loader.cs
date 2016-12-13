@@ -12,6 +12,7 @@ namespace TerrainGen {
 		private GameObject button2;
 		private UIButton menuButton;
 		private UITabstrip strip = null;
+		private bool initialized;
 
 		public override void OnLevelLoaded(LoadMode m)
 		{
@@ -40,6 +41,8 @@ namespace TerrainGen {
 			panel.transform.parent = v.transform;
 			panel.position = new Vector3(menuButton.position.x-240, menuButton.position.y - 105);
 			panel.Hide ();
+
+			initialized = true;
 		}		
 
 		private void uiButton_eventClick(UIComponent component, UIMouseEventParameter eventParam) {
@@ -54,12 +57,14 @@ namespace TerrainGen {
 		}
 
 		public override void OnLevelUnloading() {
-			Debug.Log("OnLevelUnloading()");
-			menuButton.eventClick -= uiButton_eventClick;
-			strip.RemoveUIComponent(menuButton);
-			UIView.Destroy(menuButton);
-			UIView.Destroy(panel);
-			UIView.Destroy(window);
+			if (initialized && menuButton != null) {
+				menuButton.eventClick -= uiButton_eventClick;
+				strip.RemoveUIComponent(menuButton);
+				UIView.Destroy(menuButton);
+				UIView.Destroy(panel);
+				UIView.Destroy(window);
+				initialized = false;
+			}
 		}
 	}
 }
